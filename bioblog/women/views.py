@@ -9,7 +9,7 @@ def index(request):
 def categories(request, cat):
 	if (request.GET):
 		print(request.GET)
-	return HttpResponse(f"<h1>Страница приложения women</h1>\n<p>{cat}</p>")
+	return HttpResponse(f"<h1>Страница по категориям</h1>\n<p>{cat}</p>")
 
 
 def archive(request, year):
@@ -17,6 +17,7 @@ def archive(request, year):
 		return redirect('home')
 
 	return HttpResponse(f"<h1>Архив по годам</h1>\n<p>{year}</p>")
+
 
 def pageNotFound(request, exception):
 	return HttpResponseNotFound('<h1>Страница не найдена</h1>')
