@@ -5,30 +5,39 @@ from django.http import HttpResponse, HttpResponseNotFound, Http404
 from .models import *
 
 
-menu = ["About site", "Add article", "FeedBack", "Login"]
+menu = [
+	{'title': "О сайте", 'url_name': "about"},
+	{'title': "Добавить статью", 'url_name': "addpage"},
+	{'title': "Обратная связь", 'url_name': "contact"},
+	{'title': "Войти", 'url_name': "login"},
+]
 
 # Create your views here.
 def index(request):
 	posts = Women.objects.all()
-	return render(request, 'women/index.html', {'menu': menu, 'title': 'Main page', 'posts': posts})
+	context = {
+		'menu': menu,
+		'title': 'Main page',
+		'posts': posts
+	}
+	return render(request, 'women/index.html', context=context)
+
+def show_post(request, post_id):
+	return HttpResponse(f'Отображение статьи с id = {post_id}')
 
 
 def about(request):
 	return render(request, 'women/about.html', {'menu': menu, 'title': 'About page'})
 
 
-def categories(request, cat):
-	if (request.GET):
-		print(request.GET)
-	return HttpResponse(f"<h1>Страница по категориям</h1>\n<p>{cat}</p>")
+def addpage(request):
+	return HttpResponse("Добавление статьи")
 
+def contact(request):
+	return HttpResponse("Обратная связь")
 
-def archive(request, year):
-	if int(year) > 2022:
-		return redirect('home')
-
-	return HttpResponse(f"<h1>Архив по годам</h1>\n<p>{year}</p>")
-
+def login(request):
+	return HttpResponse("Авторизация")
 
 def pageNotFound(request, exception):
 	return HttpResponseNotFound('<h1>Страница не найдена</h1>')

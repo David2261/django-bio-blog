@@ -2,13 +2,13 @@
 
 
 {% block content %}
-<ul>
+<ul class="list-articles">
 	{% for p in posts %}
 	<li>
 		<h2>{{ p.title }}</h2>
 		<p>{{ p.content|linebreaks|truncatewords:10 }}</p>
 		<div class="clear"></div>
-		<div class="link-read-post"><a href="#">Читать пост</a></div>
+		<div class="link-read-post"><a href="{{ p.get_absolute_url }}">Читать пост</a></div>
 	</li>
 	{% endfor %}
 </ul>

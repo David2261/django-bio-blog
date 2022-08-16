@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Women(models.Model):
@@ -12,3 +13,7 @@ class Women(models.Model):
 	# Заголовок текущей записи
 	def __str__(self):
 		return self.title
+
+	# Формирует маршрут к конкретной записи
+	def det_absolute_url(self):
+		return reverse('post', kwargs={'post_id': self.pk})
