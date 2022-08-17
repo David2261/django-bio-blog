@@ -15,12 +15,10 @@ menu = [
 # Create your views here.
 def index(request):
 	posts = Women.objects.all()
-	cats = Category.objects.all()
 	context = {
 		'menu': menu,
 		'title': 'Main page',
 		'posts': posts,
-		'cats': cats,
 		'cat_selected': 0,
 	}
 	return render(request, 'women/index.html', context=context)
@@ -31,7 +29,6 @@ def show_post(request, post_id):
 
 def show_category(request, cat_id):
 	posts = Women.objects.filter(cat_id = cat_id)
-	cats = Category.objects.all()
 
 	if len(posts) == 0:
 		raise Http404()
@@ -40,7 +37,6 @@ def show_category(request, cat_id):
 		'menu': menu,
 		'title': 'Отображение по рубрикам',
 		'posts': posts,
-		'cats': cats,
 		'cat_selected': 0,
 	}
 	return render(request, 'women/index.html', context=context)
