@@ -6,3 +6,29 @@ models - Для хранения ОРМ
 tests - Для тестов
 views - Для представлений
 
+Для ОРМ
+
+Women.objects.latest('time_create') - Последняя созданная запись
+Women.objects.earliest('time_create') - Первая созданная запись
+
+w = Women.objects.get(pk=7) - К переменной присваивается запись
+
+w.get_previous_by_time_update() - Запись созданная до выбранной
+w.get_next_by_time_update() - Запись созданная после выбранной
+
+exists() - Проверка существования записи
+count() - Получение числа записей
+
+Women.objects.filter(cat__slug='aktrisy') - Выбор записи с категорией (slug) Актрисы
+
+Класс Q:
+	& - логическое И (приоритет 2) 
+	| - логическое ИЛИ (приоритет 3)
+	~ - логическое НЕ (приоритет 1)
+
+
+
+
+
+Пример SQL запросов из python shell
+connection.queries
