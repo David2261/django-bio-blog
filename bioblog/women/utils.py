@@ -12,6 +12,7 @@ menu = [
 
 
 class DataMixin:
+	paginate_by = 5
 	# Формирует контекст для шаблона.
 	def get_user_context(self, **kwargs):
 		context = kwargs
