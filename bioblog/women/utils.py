@@ -1,4 +1,5 @@
 from django.db.models import Count
+from django.core.cache import cache
 
 from .models import *
 
@@ -17,7 +18,10 @@ class DataMixin:
 		context = kwargs
 		# Отображает, только те категории, в которых
 		# 						есть хотя бы 1 статья.
-		cats = Category.objects.annotate(Count('women'))
+		cats = cache.get('cats')
+		if not cats:
+			cats = Category.objects.annotate(Count('women'))
+			cache.set('cats', cats, 60)
 		# Если пользователь не авторизован,
 		# 		то страница "Добавить статью" не отображается.
 		user_menu = menu.copy()
