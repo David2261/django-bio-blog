@@ -1,4 +1,4 @@
-.PHONY start env activate install dir migrate
+.PHONY: start env activate install dir migrate
 
 PIP = pip install
 PYTHON = python manage.py
