@@ -1,7 +1,25 @@
 # Django Biography Blog
 
-## Tools
-![alt text](https://github.com/devicons/devicon/blob/master/icons/python/python-original.svg "Python") ![alt text](https://github.com/devicons/devicon/blob/master/icons/django/django-plain.svg "Django")
+## Get start
+*if you have make:*
+```bash
+make Makefile
+make Makefile activate
+make MAkefile migrate
+```
+*else*
+```bash
+virtualenv venv
+echo 'Bash'
+echo 'venv/bin/activate'
+echo 'Windows'
+venv\Script\activate
+
+pip install requirements
+cd bioblog
+python manage.py migrate
+python manage.py runserver
+```
 
 ## Description
 *Biography Blog with authentication and contact form. Modificated admin panel.*
